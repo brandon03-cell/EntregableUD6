@@ -234,4 +234,19 @@ public class ClienteDAO {
         }
         return total;
     }
+
+    public int contadorEdad30a50() {
+        int total = 0;
+        String sql = "select count(*) from Clientes where edad between 30 and 50";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return total;
+    }
 }
