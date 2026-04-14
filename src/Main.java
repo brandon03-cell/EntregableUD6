@@ -9,7 +9,6 @@ public class Main {
 
         cdao.insertarCliente(c);
         cdao.actualizarCliente(c, 12);
-
         obtenerCliente();
         obtenerTodos();
         obtenerMayores30();
@@ -39,7 +38,7 @@ public class Main {
         Cliente c = new Cliente("Daniel Pavón", "julian@gmail.com", "123456789",
                 67, 1.01, 10);
         ClienteDAO cdao = new ClienteDAO();
-        cdao.actualizarCliente(c, 10);
+        cdao.actualizarCliente(c, 12);
     }
 
     public static void eliminarCliente() {
