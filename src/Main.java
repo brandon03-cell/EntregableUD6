@@ -8,7 +8,8 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         //insertarCliente();
-        actualizarCliente();
+        //actualizarCliente();
+        eliminarCliente();
 
         //String url = "jdbc:sqlite:entregable.sqlite";
         //try (Connection conn = DriverManager.getConnection(url)) {
@@ -30,5 +31,10 @@ public class Main {
                 67, 1.01, 10);
         ClienteDAO cdao = new ClienteDAO();
         cdao.actualizarCliente(c, 10);
+    }
+
+    public static void eliminarCliente() {
+        ClienteDAO cdao = new ClienteDAO();
+        cdao.eliminarCliente(1);
     }
 }

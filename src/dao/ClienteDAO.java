@@ -45,4 +45,16 @@ public class ClienteDAO {
             System.out.println("Si que dudaba de mis habilidades como programador, el error es: " + e.getMessage());
         }
     }
+
+    public void eliminarCliente(int id) {
+        try (Connection conn = DriverManager.getConnection(url)) {
+            String sql = "delete from Clientes where id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("goodbye broder 🗿🥀");
+        } catch (Exception e) {
+            System.out.println("bruh: " + e.getMessage());
+        }
+    }
 }
