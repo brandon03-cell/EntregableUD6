@@ -1,24 +1,31 @@
 import dao.ClienteDAO;
 import modelo.Cliente;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
-        //insertarCliente();
-        //actualizarCliente();
-        //eliminarCliente();
-        obtenerCliente();
+        ClienteDAO cdao = new ClienteDAO();
 
-        //String url = "jdbc:sqlite:entregable.sqlite";
-        //try (Connection conn = DriverManager.getConnection(url)) {
-        //    System.out.println("gg");
-        //} catch (SQLException e) {
-        //    System.out.println("nuh uh");
-        //}
+        Cliente c = new Cliente("Paco", "paco@paco.com", "611186103", 100, 499.67, 3);
+
+        cdao.insertarCliente(c);
+        cdao.actualizarCliente(c, 12);
+
+        obtenerCliente();
+        obtenerTodos();
+        obtenerMayores30();
+        obtenerGastoMas500();
+        obtenerOrdenadosPorGasto();
+        obtenerTop3Compradores();
+        obtenerSumaTotalGasto();
+        obtenerMediaProductos();
+        obtenerMediaGastoFiltrado();
+        contadorGastoMas100();
+        contadorEdad30a50();
+        obtenerGasto200Ordenado();
+        obtenerMasJovenGasto400();
+
+        cdao.eliminarCliente(12);
+
     }
 
     public static void insertarCliente() {
