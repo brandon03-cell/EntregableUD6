@@ -4,6 +4,7 @@ import modelo.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,7 +42,6 @@ public class Main {
 
     public static void obtenerCliente() {
         ClienteDAO cdao = new ClienteDAO();
-        Cliente c = cdao.obtenerCliente(2);
-        System.out.println(c);
+        System.out.println(cdao.obtenerCliente(2));
     }
 }

@@ -3,6 +3,7 @@ package dao;
 import modelo.Cliente;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ClienteDAO {
     String url = "jdbc:sqlite:entregable.sqlite";
@@ -55,26 +56,48 @@ public class ClienteDAO {
         }
     }
 
-    public Cliente obtenerCliente(int id) {
-        Cliente c = null;
-        String sql = "SELECT * FROM Clientes WHERE id = ?";
+    public ArrayList<Cliente> obtenerCliente(int id) {
+        ArrayList<Cliente> lista = new ArrayList<>();
+        String sql = "select * from Clientes where id = ?";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                c = new Cliente(
+                lista.add(new Cliente(
                         rs.getString("nombre"),
                         rs.getString("email"),
                         rs.getString("telefono"),
                         rs.getInt("edad"),
                         rs.getDouble("dinero_gastado"),
                         rs.getInt("productos_comprados")
-                );
+                ));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return c;
+        return lista;
+    }
+
+    public ArrayList<Cliente> obtenerTodos() {
+        ArrayList<Cliente> lista = new ArrayList<>();
+        String sql = "select * from Clientes";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new Cliente(
+                        rs.getString("nombre"),
+                        rs.getString("email"),
+                        rs.getString("telefono"),
+                        rs.getInt("edad"),
+                        rs.getDouble("dinero_gastado"),
+                        rs.getInt("productos_comprados")
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
     }
 }
