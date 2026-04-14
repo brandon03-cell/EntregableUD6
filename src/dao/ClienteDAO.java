@@ -204,4 +204,19 @@ public class ClienteDAO {
         }
         return media;
     }
+
+    public double obtenerMediaGastoFiltrado() {
+        double media = 0;
+        String sql = "SELECT AVG(dinero_gastado) FROM Clientes WHERE edad > 25 AND productos_comprados > 3";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                media = rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return media;
+    }
 }
