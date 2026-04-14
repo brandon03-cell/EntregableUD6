@@ -264,4 +264,19 @@ public class ClienteDAO {
         }
         return lista;
     }
+
+    public ArrayList<Cliente> obtenerMasJovenGasto400() {
+        ArrayList<Cliente> lista = new ArrayList<>();
+        String sql = "select * from Clientes where dinero_gastado > 400 order by edad asc limit 1";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                lista.add(new Cliente(rs.getString("nombre"), rs.getString("email"), rs.getString("telefono"), rs.getInt("edad"), rs.getDouble("dinero_gastado"), rs.getInt("productos_comprados")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
 }
