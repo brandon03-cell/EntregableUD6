@@ -249,4 +249,19 @@ public class ClienteDAO {
         }
         return total;
     }
+
+    public ArrayList<Cliente> obtenerGasto200Ordenado() {
+        ArrayList<Cliente> lista = new ArrayList<>();
+        String sql = "select * from Clientes where dinero_gastado > 200 order by productos_comprados asc";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new Cliente(rs.getString("nombre"), rs.getString("email"), rs.getString("telefono"), rs.getInt("edad"), rs.getDouble("dinero_gastado"), rs.getInt("productos_comprados")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
 }
