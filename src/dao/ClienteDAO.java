@@ -189,4 +189,19 @@ public class ClienteDAO {
         }
         return total;
     }
+
+    public double obtenerMediaProductos() {
+        double media = 0;
+        String sql = "SELECT AVG(productos_comprados) FROM Clientes";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                media = rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return media;
+    }
 }
