@@ -44,4 +44,64 @@ public class Main {
         ClienteDAO cdao = new ClienteDAO();
         System.out.println(cdao.obtenerCliente(2));
     }
+
+    public static void obtenerTodos() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerTodos());
+    }
+
+    public static void obtenerMayores30() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerMayores30());
+    }
+
+    public static void obtenerGastoMas500() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerGastoMas500());
+    }
+
+    public static void obtenerOrdenadosPorGasto() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerOrdenadosPorGasto());
+    }
+
+    public static void obtenerTop3Compradores() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerTop3Compradores());
+    }
+
+    public static void obtenerSumaTotalGasto() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerSumaTotalGasto());
+    }
+
+    public static void obtenerMediaProductos() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerMediaProductos());
+    }
+
+    public static void obtenerMediaGastoFiltrado() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerMediaGastoFiltrado());
+    }
+
+    public static void contadorGastoMas100() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.contadorGastoMas100());
+    }
+
+    public static void contadorEdad30a50() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.contadorEdad30a50());
+    }
+
+    public static void obtenerGasto200Ordenado() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerGasto200Ordenado());
+    }
+
+    public static void obtenerMasJovenGasto400() {
+        ClienteDAO cdao = new ClienteDAO();
+        System.out.println(cdao.obtenerMasJovenGasto400());
+    }
 }
