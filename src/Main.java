@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        insertarCliente();
+        //insertarCliente();
+        actualizarCliente();
 
         //String url = "jdbc:sqlite:entregable.sqlite";
         //try (Connection conn = DriverManager.getConnection(url)) {
@@ -22,5 +23,12 @@ public class Main {
                 9999.99, 1);
         ClienteDAO cdao = new ClienteDAO();
         cdao.insertarCliente(c);
+    }
+
+    public static void actualizarCliente() {
+        Cliente c = new Cliente("Daniel Pavón", "julian@gmail.com", "123456789",
+                67, 1.01, 10);
+        ClienteDAO cdao = new ClienteDAO();
+        cdao.actualizarCliente(c, 10);
     }
 }
