@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args) {
         //insertarCliente();
         //actualizarCliente();
-        eliminarCliente();
+        //eliminarCliente();
+        obtenerCliente();
 
         //String url = "jdbc:sqlite:entregable.sqlite";
         //try (Connection conn = DriverManager.getConnection(url)) {
@@ -36,5 +37,11 @@ public class Main {
     public static void eliminarCliente() {
         ClienteDAO cdao = new ClienteDAO();
         cdao.eliminarCliente(1);
+    }
+
+    public static void obtenerCliente() {
+        ClienteDAO cdao = new ClienteDAO();
+        Cliente c = cdao.obtenerCliente(2);
+        System.out.println(c);
     }
 }

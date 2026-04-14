@@ -2,10 +2,7 @@ package dao;
 
 import modelo.Cliente;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ClienteDAO {
     String url = "jdbc:sqlite:entregable.sqlite";
@@ -56,5 +53,28 @@ public class ClienteDAO {
         } catch (Exception e) {
             System.out.println("bruh: " + e.getMessage());
         }
+    }
+
+    public Cliente obtenerCliente(int id) {
+        Cliente c = null;
+        String sql = "SELECT * FROM Clientes WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                c = new Cliente(
+                        rs.getString("nombre"),
+                        rs.getString("email"),
+                        rs.getString("telefono"),
+                        rs.getInt("edad"),
+                        rs.getDouble("dinero_gastado"),
+                        rs.getInt("productos_comprados")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return c;
     }
 }
