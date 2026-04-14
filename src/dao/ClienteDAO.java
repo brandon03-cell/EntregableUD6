@@ -174,4 +174,19 @@ public class ClienteDAO {
         }
         return lista;
     }
+
+    public double obtenerSumaTotalGasto() {
+        double total = 0;
+        String sql = "SELECT SUM(dinero_gastado) FROM Clientes";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                total = rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return total;
+    }
 }
