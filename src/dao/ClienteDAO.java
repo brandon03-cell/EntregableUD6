@@ -147,7 +147,7 @@ public class ClienteDAO {
 
     public ArrayList<Cliente> obtenerOrdenadosPorGasto() {
         ArrayList<Cliente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Clientes ORDER BY dinero_gastado DESC";
+        String sql = "select * from Clientes order by dinero_gastado desc";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -162,7 +162,7 @@ public class ClienteDAO {
 
     public ArrayList<Cliente> obtenerTop3Compradores() {
         ArrayList<Cliente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Clientes ORDER BY productos_comprados DESC LIMIT 3";
+        String sql = "select * from Clientes order by productos_comprados desc limit 3";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -177,7 +177,7 @@ public class ClienteDAO {
 
     public double obtenerSumaTotalGasto() {
         double total = 0;
-        String sql = "SELECT SUM(dinero_gastado) FROM Clientes";
+        String sql = "select SUM(dinero_gastado) from Clientes";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -192,7 +192,7 @@ public class ClienteDAO {
 
     public double obtenerMediaProductos() {
         double media = 0;
-        String sql = "SELECT AVG(productos_comprados) FROM Clientes";
+        String sql = "select AVG(productos_comprados) from Clientes";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -207,7 +207,7 @@ public class ClienteDAO {
 
     public double obtenerMediaGastoFiltrado() {
         double media = 0;
-        String sql = "SELECT AVG(dinero_gastado) FROM Clientes WHERE edad > 25 AND productos_comprados > 3";
+        String sql = "select AVG(dinero_gastado) from Clientes where edad > 25 and productos_comprados > 3";
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -218,5 +218,20 @@ public class ClienteDAO {
             System.out.println(e.getMessage());
         }
         return media;
+    }
+
+    public int contadorGastoMas100() {
+        int total = 0;
+        String sql = "select count(*) from Clientes where dinero_gastado > 100";
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return total;
     }
 }
